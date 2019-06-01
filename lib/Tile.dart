@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,9 +16,13 @@ class _FludgetTileState extends State<FludgetTile> {
     return docsSnapShot.documents;
   }
 
+  var colors = [0xff03a9f4, 0xff4db6ac, 0xfff44336, 0xffe91e63,0xff7c4dff];
+  var random = Random();
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color(colors[random.nextInt(colors.length-1)]),
       child: FutureBuilder(
           future: getPosts(),
           builder: (_, snapshot) {
@@ -45,29 +51,31 @@ class _FludgetTileState extends State<FludgetTile> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (_, index) {
                     return Card(
+//                      color:
                       elevation: 8.0,
                       shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                            subtitle: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(snapshot.data[index].data['faculty']),
-                            ),
-                            title: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                snapshot.data[index].data["name"],
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 23.0,
-                                    letterSpacing: 1.0,
-                                    fontWeight: FontWeight.w400),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                              subtitle: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(snapshot.data[index].data['faculty']),
                               ),
-                            ),
-                            onTap: null
+                              title: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  snapshot.data[index].data["name"],
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 23.0,
+                                      letterSpacing: 1.0,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                              onTap: null
 //                      ()
 //                      {
 //                        Navigator.push(
@@ -76,7 +84,8 @@ class _FludgetTileState extends State<FludgetTile> {
 //                                builder: (context) => ApplicationDetails(
 //                                    snapshot.data[index], userDetails)));
 //                      },
-                            ),
+                              ),
+                        ),
                       ),
                     );
                   });
