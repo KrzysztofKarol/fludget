@@ -3,27 +3,19 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FludgetTile extends StatefulWidget {
-  @override
-  _FludgetTileState createState() => _FludgetTileState();
-}
+class FludgetTile extends StatelessWidget {
+  final String name;
+  final String imgUrl;
+  final String description;
 
-class _FludgetTileState extends State<FludgetTile> {
-  String _imageUrl;
-  StorageReference _reference = FirebaseStorage.instance.ref().child('');
-  void initState() {
-    super.initState();
-  }
+  FludgetTile({
+    this.name,
+    this.imgUrl,
+    this.description,
+  });
 
-  Future getImage() async {
-    String downloadUrl = await _reference.getDownloadURL();
-    setState(() {
-      _imageUrl = downloadUrl;
-    });
-  }
-
-  var colors = [0xff03a9f4, 0xff4db6ac, 0xfff44336, 0xffe91e63, 0xff7c4dff];
-  var random = Random();
+  final colors = [0xff03a9f4, 0xff4db6ac, 0xfff44336, 0xffe91e63, 0xff7c4dff];
+  final random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +60,7 @@ class _FludgetTileState extends State<FludgetTile> {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          "Align",
+                          name,
                           style: TextStyle(
                               color: Colors.white,
                               letterSpacing: 1.0,

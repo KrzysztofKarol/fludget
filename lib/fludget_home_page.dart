@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'fludget_tile.dart';
+
 class FludgetHomePage extends StatefulWidget {
   FludgetHomePage({Key key}) : super(key: key);
 
@@ -23,7 +25,7 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
             builder: (context, snapshot) {
               if (!snapshot.hasData) return LinearProgressIndicator();
 
-              return ListTile(
+              return FludgetTile(
                 title: Text(snapshot.data.documents[0].data["name"]),
                 onTap: () {
                   Navigator.push(
