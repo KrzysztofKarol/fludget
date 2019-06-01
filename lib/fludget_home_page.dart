@@ -2,6 +2,7 @@ import 'package:fludget/tile.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'Application_of_day_tile.dart';
 
 class FludgetHomePage extends StatefulWidget {
   FludgetHomePage({Key key}) : super(key: key);
@@ -46,6 +47,7 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
           ListTile(
             title: Text('Flutter app of the day'),
           ),
+          ApplicationOfTheDay()
         ],
       ),
     ));
