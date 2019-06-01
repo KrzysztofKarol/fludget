@@ -1,7 +1,7 @@
 package io.flutter.plugins
 
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import io.flutter.app.FlutterApplication
 
 class MyApplication : FlutterApplication() {
