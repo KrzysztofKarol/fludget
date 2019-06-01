@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ApplicationOfTheDay extends StatelessWidget {
+  final String name;
+  final String imageUrl;
+
+  ApplicationOfTheDay({this.name, this.imageUrl,});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,7 +19,7 @@ class ApplicationOfTheDay extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                  color: Colors.black45,
+                child: Image.network(imageUrl),
                   height: MediaQuery.of(context).size.height / 3),
             ),
           ),
@@ -32,7 +37,7 @@ class ApplicationOfTheDay extends StatelessWidget {
                       child: Text(
                         "Application of the Day",
                         style: TextStyle(
-                          fontSize: 25.0,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.0,
                         ),
@@ -44,7 +49,7 @@ class ApplicationOfTheDay extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "Application Title",
+                        name,
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 20.0,
