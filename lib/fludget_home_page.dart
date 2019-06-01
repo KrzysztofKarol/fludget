@@ -1,3 +1,4 @@
+import 'package:fludget/tile.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -38,9 +39,7 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
               );
             },
           ),
-          ListTile(
-            title: Text('Package of the day'),
-          ),
+          FludgetTile(),
           ListTile(
             title: Text('Github repo of the day'),
           ),
