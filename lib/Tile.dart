@@ -12,7 +12,7 @@ class _FludgetTileState extends State<FludgetTile> {
   Future getPosts() async {
     var firestore = Firestore.instance;
     QuerySnapshot docsSnapShot =
-        await firestore.collection("user").getDocuments();
+        await firestore.collection("Tiles").getDocuments();
     return docsSnapShot.documents;
   }
 
