@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FludgetHomePage extends StatefulWidget {
   FludgetHomePage({Key key}) : super(key: key);
@@ -16,8 +17,15 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ListTile(
-            title: Text('Widget of the day'),
+          StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection('widgets').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return LinearProgressIndicator();
+
+              return ListTile(
+                title: Text(snapshot.data.documents[0].data["name"]),
+              );
+            },
           ),
           ListTile(
             title: Text('Package of the day'),
