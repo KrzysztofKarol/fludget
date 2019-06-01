@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "811682694699",
+    "firebase_url": "https://fludget.firebaseio.com",
+    "project_id": "fludget",
+    "storage_bucket": "fludget.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811682694699:android:518353b008b6f72c",
+        "android_client_info": {
+          "package_name": "com.example.fludget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811682694699-t5cq4ms5qkdu04j8kcd88sh00hv501it.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDImBlhxL1me0JFSOBfpmU87IlkCFjcVgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811682694699-t5cq4ms5qkdu04j8kcd88sh00hv501it.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "811682694699-6p970ei6d5t7rl68gpeq5hpdv9ij32l1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fludget"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
