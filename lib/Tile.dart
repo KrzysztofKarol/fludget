@@ -10,7 +10,7 @@ class _FludgetTileState extends State<FludgetTile> {
   Future getPosts() async {
     var firestore = Firestore.instance;
     QuerySnapshot docsSnapShot =
-    await firestore.collection("user").getDocuments();
+        await firestore.collection("user").getDocuments();
     return docsSnapShot.documents;
   }
 
@@ -48,7 +48,7 @@ class _FludgetTileState extends State<FludgetTile> {
                       elevation: 8.0,
                       shape: RoundedRectangleBorder(
                           borderRadius:
-                          BorderRadius.all(Radius.circular(20.0))),
+                              BorderRadius.all(Radius.circular(20.0))),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
@@ -76,7 +76,7 @@ class _FludgetTileState extends State<FludgetTile> {
 //                                builder: (context) => ApplicationDetails(
 //                                    snapshot.data[index], userDetails)));
 //                      },
-                        ),
+                            ),
                       ),
                     );
                   });
