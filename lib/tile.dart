@@ -24,11 +24,13 @@ class FludgetTile extends StatelessWidget {
         height: 150,
         child: Row(
           children: <Widget>[
-            imageUrl != null ? Container(
-              child: Image(image: NetworkImage(imageUrl)),
-              width: 100.0,
-              height: 70.0,
-            ): Container(),
+            imageUrl != null
+                ? Container(
+                    child: Image(image: NetworkImage(imageUrl)),
+                    width: 100.0,
+                    height: 70.0,
+                  )
+                : Container(),
             Expanded(
               child: Column(
                 children: <Widget>[
@@ -49,10 +51,10 @@ class FludgetTile extends StatelessWidget {
                         name,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                            color: Colors.white,
-                            letterSpacing: 1.0,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20.0,
+                          color: Colors.white,
+                          letterSpacing: 1.0,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20.0,
                         ),
                       ),
                     ),
