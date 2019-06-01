@@ -52,6 +52,7 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
               return InkWell(
                 child: FludgetTile(
                     name: snapshot.data.documents[0].data["name"],
+                    imageUrl: "https://www.clipartmax.com/png/full/36-361084_clipart-sammlung-download.png",
                     title: "Repo of the Day"),
                 onTap: () {
                   Navigator.push(
@@ -75,6 +76,7 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
               return InkWell(
                 child: FludgetTile(
                     name: snapshot.data.documents[0].data["name"],
+                    imageUrl: "http://dartdoc.takyam.com/logos/dart-logo.png",
                     title: "Package of the Day"),
                 onTap: () {
                   Navigator.push(
@@ -89,9 +91,6 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
                 },
               );
             },
-          ),
-          ListTile(
-            title: Text('Flutter app of the day'),
           ),
           ApplicationOfTheDay()
         ],
