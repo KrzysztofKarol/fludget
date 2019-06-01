@@ -13,43 +13,65 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance.collection('widgets').snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return LinearProgressIndicator();
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Expanded(
+            child: ListView(
+              children: <Widget>[
+                Flexible(
+                  flex: 2,
+                  child: Card(
+                    child: StreamBuilder<QuerySnapshot>(
+                      stream: Firestore.instance.collection('widgets').snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) return LinearProgressIndicator();
 
-              return ListTile(
-                title: Text(snapshot.data.documents[0].data["name"]),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => WidgetOfTheDayPage(
-                                url: snapshot.data.documents[0].data["url"],
-                                widgetName:
-                                    snapshot.data.documents[0].data["name"],
-                              )));
-                },
-              );
-            },
+                        return ListTile(
+                          title: Text(snapshot.data.documents[0].data["name"]),
+                          leading: FlutterLogo(),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => WidgetOfTheDayPage(
+                                          url: snapshot.data.documents[0].data["url"],
+                                          widgetName:
+                                              snapshot.data.documents[0].data["name"],
+                                        )));
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Card(
+                    child: ListTile(
+                      title: Text('Package of the day'),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 3,
+                  child: Card(
+                    child: ListTile(
+                      title: Text('Github repo of the day'),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 5,
+                  child: Card(
+                    child: ListTile(
+                      title: Text('Flutter app of the day'),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          ListTile(
-            title: Text('Package of the day'),
-          ),
-          ListTile(
-            title: Text('Github repo of the day'),
-          ),
-          ListTile(
-            title: Text('Flutter app of the day'),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 }
 
