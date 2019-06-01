@@ -16,13 +16,13 @@ class _FludgetTileState extends State<FludgetTile> {
     return docsSnapShot.documents;
   }
 
-  var colors = [0xff03a9f4, 0xff4db6ac, 0xfff44336, 0xffe91e63,0xff7c4dff];
+  var colors = [0xff03a9f4, 0xff4db6ac, 0xfff44336, 0xffe91e63, 0xff7c4dff];
   var random = Random();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(colors[random.nextInt(colors.length-1)]),
+      color: Color(colors[random.nextInt(colors.length - 1)]),
       child: FutureBuilder(
           future: getPosts(),
           builder: (_, snapshot) {
@@ -62,7 +62,8 @@ class _FludgetTileState extends State<FludgetTile> {
                           child: ListTile(
                               subtitle: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(snapshot.data[index].data['faculty']),
+                                child:
+                                    Text(snapshot.data[index].data['faculty']),
                               ),
                               title: Padding(
                                 padding: const EdgeInsets.all(8.0),
