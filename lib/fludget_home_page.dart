@@ -25,8 +25,11 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
             builder: (context, snapshot) {
               if (!snapshot.hasData) return LinearProgressIndicator();
 
-              return ListTile(
-                title: Text(snapshot.data.documents[0].data["name"]),
+              return InkWell(
+                child: FludgetTile(
+                    name: snapshot.data.documents[0].data["name"],
+                    imageUrl: snapshot.data.documents[0].data["image_url"],
+                    title: "Widget of the Day"),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -35,14 +38,57 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
                                 url: snapshot.data.documents[0].data["url"],
                                 widgetName:
                                     snapshot.data.documents[0].data["name"],
+                                prefix: "Widget",
                               )));
                 },
               );
             },
           ),
-          FludgetTile(),
-          ListTile(
-            title: Text('Github repo of the day'),
+          StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection('repos').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return LinearProgressIndicator();
+
+              return InkWell(
+                child: FludgetTile(
+                    name: snapshot.data.documents[0].data["name"],
+                    title: "Repo of the Day"),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => WidgetOfTheDayPage(
+                                url: snapshot.data.documents[0].data["url"],
+                                widgetName:
+                                    snapshot.data.documents[0].data["name"],
+                                prefix: "Repo",
+                              )));
+                },
+              );
+            },
+          ),
+          StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection('packages').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return LinearProgressIndicator();
+
+              return InkWell(
+                child: FludgetTile(
+                    name: snapshot.data.documents[0].data["name"],
+                    title: "Package of the Day"),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => WidgetOfTheDayPage(
+                                url: snapshot.data.documents[0].data["url"],
+                                widgetName:
+                                    snapshot.data.documents[0].data["name"],
+                                prefix: "Package",
+                              )));
+                },
+              );
+            },
           ),
           ListTile(
             title: Text('Flutter app of the day'),
@@ -57,16 +103,15 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
 class WidgetOfTheDayPage extends StatelessWidget {
   final String url;
   final String widgetName;
-  const WidgetOfTheDayPage({
-    this.url,
-    this.widgetName,
-  });
+  final String prefix;
+
+  const WidgetOfTheDayPage({this.url, this.widgetName, this.prefix});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Widget of the day: $widgetName'),
+        title: Text('$prefix of the day: $widgetName'),
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
