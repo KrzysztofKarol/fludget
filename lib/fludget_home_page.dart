@@ -16,93 +16,95 @@ class _FludgetHomePageState extends State<FludgetHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                StreamBuilder<QuerySnapshot>(
-                  stream: Firestore.instance.collection('widgets').snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) return LinearProgressIndicator();
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  StreamBuilder<QuerySnapshot>(
+                    stream: Firestore.instance.collection('widgets').snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) return LinearProgressIndicator();
 
-                    return InkWell(
-                      child: FludgetTile(
-                          name: snapshot.data.documents[0].data["name"],
-                          imageUrl:
-                              snapshot.data.documents[0].data["image_url"],
-                          title: "Widget of the Day"),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WidgetOfTheDayPage(
-                                      url: snapshot
-                                          .data.documents[0].data["url"],
-                                      widgetName: snapshot
-                                          .data.documents[0].data["name"],
-                                      prefix: "Widget",
-                                    )));
-                      },
-                    );
-                  },
-                ),
-                StreamBuilder<QuerySnapshot>(
-                  stream: Firestore.instance.collection('repos').snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) return LinearProgressIndicator();
+                      return InkWell(
+                        child: FludgetTile(
+                            name: snapshot.data.documents[0].data["name"],
+                            imageUrl:
+                                snapshot.data.documents[0].data["image_url"],
+                            title: "Widget of the Day"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WidgetOfTheDayPage(
+                                        url: snapshot
+                                            .data.documents[0].data["url"],
+                                        widgetName: snapshot
+                                            .data.documents[0].data["name"],
+                                        prefix: "Widget",
+                                      )));
+                        },
+                      );
+                    },
+                  ),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: Firestore.instance.collection('repos').snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) return LinearProgressIndicator();
 
-                    return InkWell(
-                      child: FludgetTile(
-                          name: snapshot.data.documents[0].data["name"],
-                          imageUrl: "https://www.clipartmax.com/png/full/36-361084_clipart-sammlung-download.png",
-                          title: "Repo of the Day"),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WidgetOfTheDayPage(
-                                      url: snapshot
-                                          .data.documents[0].data["url"],
-                                      widgetName: snapshot
-                                          .data.documents[0].data["name"],
-                                      prefix: "Repo",
-                                    )));
-                      },
-                    );
-                  },
-                ),
-                StreamBuilder<QuerySnapshot>(
-                  stream: Firestore.instance.collection('packages').snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) return LinearProgressIndicator();
+                      return InkWell(
+                        child: FludgetTile(
+                            name: snapshot.data.documents[0].data["name"],
+                            imageUrl: "https://www.clipartmax.com/png/full/36-361084_clipart-sammlung-download.png",
+                            title: "Repo of the Day"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WidgetOfTheDayPage(
+                                        url: snapshot
+                                            .data.documents[0].data["url"],
+                                        widgetName: snapshot
+                                            .data.documents[0].data["name"],
+                                        prefix: "Repo",
+                                      )));
+                        },
+                      );
+                    },
+                  ),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: Firestore.instance.collection('packages').snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) return LinearProgressIndicator();
 
-                    return InkWell(
-                      child: FludgetTile(
-                          name: snapshot.data.documents[0].data["name"],
-                          imageUrl: "http://dartdoc.takyam.com/logos/dart-logo.png",
-                          title: "Package of the Day"),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WidgetOfTheDayPage(
-                                      url: snapshot
-                                          .data.documents[0].data["url"],
-                                      widgetName: snapshot
-                                          .data.documents[0].data["name"],
-                                      prefix: "Package",
-                                    )));
-                      },
-                    );
-                  },
-                ),
+                      return InkWell(
+                        child: FludgetTile(
+                            name: snapshot.data.documents[0].data["name"],
+                            imageUrl: "http://dartdoc.takyam.com/logos/dart-logo.png",
+                            title: "Package of the Day"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WidgetOfTheDayPage(
+                                        url: snapshot
+                                            .data.documents[0].data["url"],
+                                        widgetName: snapshot
+                                            .data.documents[0].data["name"],
+                                        prefix: "Package",
+                                      )));
+                        },
+                      );
+                    },
+                  ),
 //              ListTile(
 //                title: Text('Flutter app of the day'),
 //              ),
-                ApplicationOfTheDay()
-              ],
+                  ApplicationOfTheDay()
+                ],
+              ),
             ),
           ),
         ));
